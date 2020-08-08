@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { GlobalProvider } from './context/GlobalState';
+import MenuBar from './components/MenuBar';
+import CartCheckout from './views/CartCheckoutPage';
+import ItemPage from './views/ItemPage';
+import NotFound from './views/NotFoundPage';
+import LandingPage from './views/LandingPage';
+import StorePage from './views/StorePage';
+import { Switch, Route } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalProvider>
+      <MenuBar />
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/store" component={StorePage} />
+        <Route exact path="/item/:id" component={ItemPage} />
+        <Route exact path="/cart" component={CartCheckout} />
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </GlobalProvider>
   );
 }
 
