@@ -5,7 +5,7 @@ import EmptyCart from '../components/EmptyCart';
 import GridTable from '../components/GridTable';
 import { Container, Paper, Typography, Grid, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import Footer from '../components/Footer';
+import { useSnackbar } from 'notistack';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,6 +37,18 @@ const CartCheckoutPage = () => {
     const classes = useStyles();
     const { cartItems, emptyCart } = useContext(GlobalContext);
     const total = cartItems.reduce((acc, curr) => acc + curr.price * curr.count, 0).toFixed(2);
+    const { enqueueSnackbar } = useSnackbar();
+
+    const removeItemsfomCart = () => {
+        enqueueSnackbar('Cart Checkout Success', {
+            variant: 'success',
+            anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'right',
+            },
+        });
+        emptyCart();
+    }
 
     return (
         <div>
@@ -57,7 +69,7 @@ const CartCheckoutPage = () => {
                         <div>
                             <GridTable gridTableData={cartItems} />
 
-                            <Button variant="contained" color="secondary" className={classes.btn} onClick={() => emptyCart()}>
+                            <Button variant="contained" color="secondary" className={classes.btn} onClick={() => removeItemsfomCart()}>
                                 Buy ( {total} $)
                             </Button>
 

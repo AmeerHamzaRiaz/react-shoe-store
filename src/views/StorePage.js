@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import SvgWave from '../components/SvgWave';
 import { GlobalContext } from '../context/GlobalState';
 import Footer from '../components/Footer'
+import { useSnackbar } from 'notistack';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-        // width: '100%',
-        // height: 450,
-        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
         transform: 'translateZ(0)',
     },
     titleBar: {
@@ -52,6 +50,19 @@ const useStyles = makeStyles((theme) => ({
 const StorePage = () => {
     const classes = useStyles();
     const { shoeData, addItem } = useContext(GlobalContext);
+    const { enqueueSnackbar } = useSnackbar();
+
+    const addItemToStore = (id) => {
+        enqueueSnackbar('Added Shoe to your cart', {
+            variant: 'success',
+            anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'right',
+            },
+        });
+        
+        addItem(id);
+    }
 
     return (
         <div className={classes.root}>
@@ -61,26 +72,24 @@ const StorePage = () => {
                         <ListSubheader component="h1">Popular Shoes</ListSubheader>
                     </GridListTile>
                     {shoeData.map(item => (
-                        // <Grid item xs={12}>
-                            <GridListTile key={item.id} cols={item.cols}>
-                                <Link to={`/item/${item.id}`} >
-                                    <img src={item.img} alt={item.name} className={classes.img} />
-                                    <SvgWave className={classes.wave} />
-                                </Link>
-                                <GridListTileBar
-                                    title={item.name}
-                                    subtitle={item.price + " $"}
-                                    titlePosition="bottom"
-                                    actionIcon={
-                                        <IconButton aria-label={`buy ${item.name}`} className={classes.icon} onClick={() => addItem(item.id)}>
-                                            <AddShoppingCartIcon />
-                                        </IconButton>
-                                    }
-                                    actionPosition="right"
-                                    className={classes.titleBar}
-                                />
-                            </GridListTile>
-                        // </Grid>
+                        <GridListTile key={item.id} cols={item.cols}>
+                            <Link to={`/item/${item.id}`} >
+                                <img src={item.img} alt={item.name} className={classes.img} />
+                                <SvgWave className={classes.wave} />
+                            </Link>
+                            <GridListTileBar
+                                title={item.name}
+                                subtitle={item.price + " $"}
+                                titlePosition="bottom"
+                                actionIcon={
+                                    <IconButton aria-label={`buy ${item.name}`} className={classes.icon} onClick={() => addItemToStore(item.id)}>
+                                        <AddShoppingCartIcon />
+                                    </IconButton>
+                                }
+                                actionPosition="right"
+                                className={classes.titleBar}
+                            />
+                        </GridListTile>
                     ))}
                 </GridList>
                 <Footer />

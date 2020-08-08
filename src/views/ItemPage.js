@@ -8,6 +8,7 @@ import { Link, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import splash from '../images/splash (1).png';
 import Footer from '../components/Footer';
+import { useSnackbar } from 'notistack';
 
 const useStyles = makeStyles((theme) => ({
     content: {
@@ -37,12 +38,24 @@ const useStyles = makeStyles((theme) => ({
 const ItemPage = () => {
     const { id } = useParams();
     const { shoeItem, getShoeItem, addItem } = useContext(GlobalContext);
+    const { enqueueSnackbar } = useSnackbar();
     const classes = useStyles();
 
     useEffect(() => {
         getShoeItem(id);
     }, []);
 
+    const addItemToStore = (id) => {
+        enqueueSnackbar('Added Shoe to your cart', {
+            variant: 'success',
+            anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'right',
+            },
+        });
+        
+        addItem(id);
+    }
 
     return (
         <Container fixed className={classes.content} >
@@ -51,7 +64,7 @@ const ItemPage = () => {
                     <Typography variant="h4" gutterBottom>{shoeItem.name}</Typography>
                     <Typography variant="body1" display="block" gutterBottom>{shoeItem.description}</Typography>
                     <Typography variant="h6" display="block" gutterBottom>Price : {shoeItem.price} $</Typography>
-                    <Button variant="contained" color="secondary" onClick={() => addItem(id)}>
+                    <Button variant="contained" color="secondary" onClick={() => addItemToStore(id)}>
                         Add to Cart
                     </Button>
                 </Grid>
