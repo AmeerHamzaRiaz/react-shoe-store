@@ -1,10 +1,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Shoe from '../images/landing-page-img.png';
 import SvgWave from '../components/SvgWave';
 
@@ -41,7 +40,7 @@ const LandingPage = () => {
         <Grid container justify="center">
             <Grid item xs={12} md={12} className={classes.topContainer}>
                 <Typography align="center" variant="h1" className={classes.tagLine}>JUST DO IT.</Typography>
-                <img src={Shoe} className={classes.img} />
+                <img src={Shoe} className={classes.img} alt="shoe"/>
             </Grid>
             <Grid item xs={12} md={12}>
                 <SvgWave />

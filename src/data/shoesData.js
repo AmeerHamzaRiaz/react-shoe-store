@@ -1,7 +1,4 @@
 import img from '../images/landing-page-img.png';
-import shoe1 from '../images/shoe1.png';
-import shoe2 from '../images/shoe2.png';
-import shoe3 from '../images/shoe3.png';
 
 const description = "Donec ornare massa non quam rutrum dignissim. Morbi facilisis, neque sagittis sollicitudin maximus, lacus est vehicula sapien, eu lacinia nunc velit at justo. Etiam condimentum, risus eget placerat imperdiet, tortor dui sodales ex, sit amet egestas lectus quam quis lorem. In lorem nibh, malesuada quis blandit sit amet, lobortis vitae erat. Nunc semper elit quis velit rutrum consectetur. Aenean nec blandit enim, id vulputate augue. Etiam quis varius velit, vitae ultricies libero. Ut augue turpis, viverra ut eros a, varius ullamcorper magna."
 

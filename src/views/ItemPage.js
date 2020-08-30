@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import splash from '../images/splash (1).png';
 import Footer from '../components/Footer';
@@ -43,7 +43,7 @@ const ItemPage = () => {
 
     useEffect(() => {
         getShoeItem(id);
-    }, []);
+    }, [id]);
 
     const addItemToStore = (id) => {
         enqueueSnackbar('Added Shoe to your cart', {
@@ -69,7 +69,7 @@ const ItemPage = () => {
                     </Button>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <img src={splash} className={classes.splash} />
+                    <img src={splash} className={classes.splash} alt="splash" />
                     <img src={shoeItem.img} className={classes.img} alt="productName" />
                 </Grid>
             </Grid>

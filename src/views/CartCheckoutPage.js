@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { GlobalContext } from '../context/GlobalState';
 import EmptyCart from '../components/EmptyCart';
 import GridTable from '../components/GridTable';
-import { Container, Paper, Typography, Grid, Button } from '@material-ui/core';
+import { Container, Grid, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
@@ -82,7 +82,6 @@ const CartCheckoutPage = () => {
                         </div>
                 }
             </Container>
-            {/* <Footer /> */}
         </div>)
 }
 

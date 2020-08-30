@@ -1,19 +1,11 @@
 import React, { useContext } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
 import MUIDataTable from "mui-datatables";
 import { GlobalContext } from '../context/GlobalState';
 import { IconButton } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 
-const useStyles = makeStyles((theme) => ({
-    btn: {
-        padding: '5px'
-    },
-}));
-
 const GridTable = ({ gridTableData }) => {
-    const classes = useStyles();
     const { removeItems, addItem, minusItem } = useContext(GlobalContext);
 
     const columns = [
